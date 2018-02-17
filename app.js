@@ -1,7 +1,7 @@
 var express = require('express');
 // setup mongoose connection
 var mongoose=require('mongoose');
-var mongoDB='mongodb://admin:*mnyi@dunda@7891#@ds237858.mlab.com:37858/avanukazi';
+var mongoDB='mongodb://admin:faraja0305@ds019143.mlab.com:19143/avanukazi';
 mongoose.connect(mongoDB);
 mongoose.Promise=global.Promise;
 var db=mongoose.connection;
