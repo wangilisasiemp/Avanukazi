@@ -1,4 +1,13 @@
 var express = require('express');
+// setup mongoose connection
+var mongoose=require('mongoose');
+var mongoDB='mongodb://admin:*mnyi@dunda@7891#@ds237858.mlab.com:37858/avanukazi';
+mongoose.connect(mongoDB);
+mongoose.Promise=global.Promise;
+var db=mongoose.connection;
+db.on('error',console.error.bind(console,'Mongo Connection Error:'));
+//end of setting up of mongoose connection
+
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
