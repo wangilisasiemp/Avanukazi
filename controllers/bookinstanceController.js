@@ -1,8 +1,14 @@
 var BookInstance=require('../models/bookinstance');
 
 //Display a list of all book instances
-exports.bookinstance_List=function(req,res){
-    res.send('NOT IMPLEMENTED: Book instance List');
+exports.bookinstance_List=function(req,res,next){
+    BookInstance.find()
+    .populate('book')
+    .exec(function(err,list_bookinstances){
+        if(err){return next(err)}
+        //successfull so render
+        res.render('bookinstance_list',{title:'Book Instance List',bookinstance_list:list_bookinstances});
+    });
 };
 
 //Display details of a specific book intance
