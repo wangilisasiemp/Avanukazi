@@ -1,9 +1,14 @@
 var Author=require('../models/author');
 
 //display a list of all authors
-exports.authorList=function(req,res){
-    res.send('NOT IMPLEMENTED AUTHOR LIST');
-}
+exports.authorList=function(req,res,next){
+    Author.find()
+    .exec(function(err,list_authors){
+        if(err){ return next(err)}
+        // successful so its safe to render
+        res.render('author_list',{title:'List of Authors',author_list:list_authors});
+    });
+};
 
 //Display details page for a specific author
 exports.authorDetail=function(req,res){

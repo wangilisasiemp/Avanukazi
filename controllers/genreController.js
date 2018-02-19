@@ -1,9 +1,15 @@
 var Genre=require('../models/genre');
 
 //display a list of all genres
-exports.genres_list=function(req,res){
-    res.send('NOT IMPLEMENTED: Genres list');
-}
+exports.genres_list=function(req,res,next){
+    Genre.find()
+    .sort({name:'asc'})
+    .exec(function(err,list_genres){
+        if(err){return next(err)}
+        //successful query display the data
+        res.render('genre_list',{title:'Genre List',genre_list:list_genres});
+    });
+};
 
 //Display the details of a specific genres list
 exports.genre_detail=function(req,res){
