@@ -1,4 +1,4 @@
-var Genre=require('../model/genre');
+var Genre=require('../models/genre');
 
 //display a list of all genres
 exports.genres_list=function(req,res){
