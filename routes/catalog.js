@@ -45,7 +45,7 @@ router.get('/books',book_controller.book_list);
 router.get('/author/create',author_controller.author_create_get);
 
 //POST request for creating an author
-router.get('/author/create',author_controller.author_create_post);
+router.post('/author/create',author_controller.author_create_post);
 
 //GET Request for deleting an author
 router.get('/author/:id/delete',author_controller.author_delete_get);
