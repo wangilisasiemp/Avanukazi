@@ -6,7 +6,7 @@ block content
 
     each author in author_list
         li 
-            a(href='author.url') #{author.name}  
+            a(href=author.url) #{author.name}  
             |(#{author.formatted_DOB} - #{author.formatted_DOD})
     else
         li There are no authors in this library

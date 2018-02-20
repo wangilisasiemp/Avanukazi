@@ -23,7 +23,7 @@ exports.genre_detail=function(req,res,next){
        genre_books:function(callback){
            Book.find({'genre':req.params.id})
            .exec(callback);
-       }
+       },
    },function(err,results){
        if(err){return next(err);}
        if(results.genre==null){ //no results
@@ -32,7 +32,7 @@ exports.genre_detail=function(req,res,next){
             return next(err);
        }
        //successfull so render
-       res.send('genre_detail',{title:'Genre Detail',genre:results.genre,genre_books:results.genre_books});
+       res.render('genre_detail',{title:'Genre Detail',genre:results.genre,genre_books:results.genre_books});
    });
 }
 
