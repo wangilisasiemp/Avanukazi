@@ -8,6 +8,7 @@ var db=mongoose.connection;
 db.on('error',console.error.bind(console,'Mongo Connection Error:'));
 //end of setting up of mongoose connection
 
+
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -17,8 +18,14 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var catalog=require('./routes/catalog');
+var compression = require('compression');
+var helmet=require('helmet');
 
 var app = express();
+
+app.use(helmet());
+//compress all routes
+app.use(compression());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

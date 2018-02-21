@@ -139,9 +139,9 @@ exports.author_delete_post = function(req, res, next) {
     });
 };
 //Display author update form on Get
-exports.author_update_get=function(req,res){
-    res.send('NOT IMPLEMENTED:Author update GET');
-}
+exports.author_update_get=function(req,res,next){
+    res.send('NOT IMPLEMENTED: Author update GET');
+};
 
 //Handle author update form on Post
 exports.author_update_post=function(req,res){
