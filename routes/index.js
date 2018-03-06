@@ -14,4 +14,6 @@ router.get('/signup',authController.signup_get);
 //sinu post 
 router.post('/signup',authController.signup_post)
 
+router.get('/logout',authController.logout_get);
+
 module.exports = router;
