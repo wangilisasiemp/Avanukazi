@@ -28,7 +28,7 @@ exports.index=function(req,res){
    },
    function(err,results){
         if(req.user){
-            res.render('index',{title:'Local Library Home',error:err,data:results,username:req.user});
+            res.render('index',{title:'Local Library Home',error:err,data:results,user:req.user});
         }
    });
 };
@@ -40,7 +40,7 @@ exports.book_list=function(req,res,next){
     .exec(function(err,list_books){
         if(err){return next(err);}
         //successfull so render
-        res.render('book_list',{title:'Book list',book_list:list_books});
+        res.render('book_list',{title:'Book list',book_list:list_books,user:req.user});
     });
 };
 
@@ -66,7 +66,7 @@ exports.book_detail=function(req,res,next){
         }
 
         // the query was successful so render
-        res.render('book_detail',{title:'Book Detail',book:results.book,book_instance:results.book_instance});
+        res.render('book_detail',{title:'Book Detail',book:results.book,book_instance:results.book_instance,user:req.user});
     })
 };
 
@@ -84,7 +84,7 @@ exports.book_create_get=function(req,res,next){
         }
     },function(err,results){
         if(err){return next(err);}
-        res.render('book_form',{title:'Create Book',authors:results.authors, genres:results.genres});
+        res.render('book_form',{title:'Create Book',authors:results.authors, genres:results.genres,user:req.user});
     });
 
 };
@@ -143,7 +143,7 @@ exports.book_create_post=[
                         results.genres[i].checked='true';
                     }
                 }
-                res.render('book_form',{title:"Create Book",authors:results.authors,genres:results.genres,book:book,errors:errors.array()})
+                res.render('book_form',{title:"Create Book",authors:results.authors,genres:results.genres,book:book,errors:errors.array(),user:req.user})
             });
             return;
         }
@@ -176,7 +176,7 @@ exports.book_delete_get=function(req,res,next){
             if(results.book==null){
                res.redirect('/catalog/books');
             }
-            res.render('book_delete',{title:'Book Delete',book:results.book, bookinstances:results.book_instances});
+            res.render('book_delete',{title:'Book Delete',book:results.book, bookinstances:results.book_instances,user:req.user});
         }
     );
 };
@@ -214,7 +214,7 @@ exports.book_update_get=function(req,res){
                 }
             }
         }
-        res.render('book_form',{title:'Update Book',authors:results.authors,genres:results.genres,book:results.book});
+        res.render('book_form',{title:'Update Book',authors:results.authors,genres:results.genres,book:results.book,user:req.user});
     });
 }
 
@@ -281,7 +281,7 @@ exports.book_update_post = [
                         results.genres[i].checked='true';
                     }
                 }
-                res.render('book_form', { title: 'Update Book',authors:results.authors, genres:results.genres, book: book, errors: errors.array() });
+                res.render('book_form', { title: 'Update Book',authors:results.authors, genres:results.genres, book: book, errors: errors.array(),user:req.user});
             });
             return;
         }

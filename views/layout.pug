@@ -19,12 +19,12 @@ html(lang='en')
               i(class="fa fa-user" aria-hidden="true") 
               |
               |
-            if username && username.gender == 'female'
-              span Hi! Madam #{username.firstname},
+            if user && user.gender == 'female'
+              span Hi! Madam #{user.firstname},
               |
               | 
             else
-              span Hi! Mr #{username.firstname},
+              span Hi! Mr #{user.firstname},
               |
               |
             a(href='/logout') Logout

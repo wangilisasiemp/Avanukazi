@@ -11,7 +11,7 @@ exports.genres_list=function(req,res,next){
     .exec(function(err,list_genres){
         if(err){return next(err)}
         //successful query display the data
-        res.render('genre_list',{title:'Genre List',genre_list:list_genres});
+        res.render('genre_list',{title:'Genre List',genre_list:list_genres,user:req.user});
     });
 };
 
@@ -34,13 +34,13 @@ exports.genre_detail=function(req,res,next){
             return next(err);
        }
        //successfull so render
-       res.render('genre_detail',{title:'Genre Detail',genre:results.genre,genre_books:results.genre_books});
+       res.render('genre_detail',{title:'Genre Detail',genre:results.genre,genre_books:results.genre_books,user:req.user});
    });
 }
 
 //Display the genre create form on GET
 exports.genre_create_get=function(req,res){
-    res.render('genre_form',{title:'Create Genre'});
+    res.render('genre_form',{title:'Create Genre',user:req.user});
 };
 
 //Handle the genre create form on POST
@@ -63,7 +63,7 @@ exports.genre_create_post=[
 
         if(!errors.isEmpty()){
             //there are errors Render the form again with sanitized values/error messages
-            res.render('genre_form',{title:'Create Genre',genre:genre,errors:errors.array()});
+            res.render('genre_form',{title:'Create Genre',genre:genre,errors:errors.array(),user:req.user});
             return;
         }
         else{

@@ -11,7 +11,7 @@ exports.bookinstance_List=function(req,res,next){
     .exec(function(err,list_bookinstances){
         if(err){return next(err)}
         //successfull so render
-        res.render('bookinstance_list',{title:'Book Instance List',bookinstance_list:list_bookinstances});
+        res.render('bookinstance_list',{title:'Book Instance List',bookinstance_list:list_bookinstances,user:req.user});
     });
 };
 
@@ -27,7 +27,7 @@ exports.bookinstance_Detail=function(req,res,next){
                     return next(err);
                 }
                 //the query was successful
-                res.render('bookinstance_detail',{title:'Book Instance Detail',bookInstance:book_instance})
+                res.render('bookinstance_detail',{title:'Book Instance Detail',bookInstance:book_instance,user:req.user})
             });
 };
 
@@ -37,7 +37,7 @@ exports.bookinstance_create_get=function(req,res,next){
     .exec(function(err,books){
         if(err){ next(err);}
         // the query was successful
-        res.render('bookinstance_form',{title: 'Create Bookinstance',book_list:books});
+        res.render('bookinstance_form',{title: 'Create Bookinstance',book_list:books,user:req.user});
     });
 };
 
@@ -73,7 +73,7 @@ exports.bookinstance_create_post=[
                 if(err){return next(err);}
 
                 //the query was successful
-                res.render('bookinstance_form',{title:'Create BookInstance',book_list:books,selected_book:bookinstance.book._id,errors:errors.array(),bookinstance:bookinstance});
+                res.render('bookinstance_form',{title:'Create BookInstance',book_list:books,selected_book:bookinstance.book._id,errors:errors.array(),bookinstance:bookinstance,user:req.user});
             })
             return;
         }
